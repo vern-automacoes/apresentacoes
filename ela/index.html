@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://apresentacao.vern.tec.br/ela">
+<meta property="og:site_name" content="Vera Saúde">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Conheça a Vera e a Verônica">
+<meta property="og:description" content="Seu centro de medicina operando no WhatsApp: a Vera atende o paciente, a Verônica cuida da operação. Agenda, financeiro, nota fiscal, Noticiário do Dia e o painel do gestor.">
+<meta property="og:image" content="https://apresentacao.vern.tec.br/ela/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Vera Saúde para a Clínica Ela · Centro de Medicina">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Conheça a Vera e a Verônica">
+<meta name="twitter:description" content="Seu centro de medicina operando no WhatsApp: a Vera atende, a Verônica cuida. Agenda, financeiro, nota fiscal e o painel do gestor.">
+<meta name="twitter:image" content="https://apresentacao.vern.tec.br/ela/og.png">
+<title>Vera Saúde · para a Clínica Ela · Centro de Medicina</title>
+<style>
+  :root{
+    --ground:#EDF3F9; --panel:#FFFFFF; --panel-2:#E7EFF6; --panel-3:#D7E4F0;
+    --ink:#122F47; --ink-soft:#375369; --muted:#6E879B; --line:#DBE7F1;
+    --brand:#1573BC; --brand-2:#1E86D6;
+    --vera:#F58220; --vera-ink:#C6600C; --vera-soft:#FCEAD6;
+    --wa-bubble:#DCF3DF; --wa-field:#E7EFF6;
+    --warn:#B5730E; --warn-soft:#FAEBD3; --danger:#C0392B; --danger-soft:#FBE2DE;
+    --shadow-sm:0 1px 2px rgba(18,47,71,.07);
+    --shadow:0 1px 2px rgba(18,47,71,.06), 0 10px 34px rgba(18,47,71,.10);
+    --shadow-lg:0 30px 70px rgba(18,47,71,.22);
+    --serif:ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --sans:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono:ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+    --maxw:1120px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#0C1621; --panel:#122334; --panel-2:#182C41; --panel-3:#213950;
+      --ink:#E7F0F8; --ink-soft:#BCD1E3; --muted:#8AA4BC; --line:#233A51;
+      --brand:#2E93DE; --brand-2:#60B4EC;
+      --vera:#F79448; --vera-ink:#F9AE73; --vera-soft:#2A1B10;
+      --wa-bubble:#DCF3DF; --wa-field:#E7EFF6;
+      --warn:#D8A552; --warn-soft:#2E2312; --danger:#E8837A; --danger-soft:#331A1A;
+      --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+      --shadow:0 1px 2px rgba(0,0,0,.35), 0 12px 38px rgba(0,0,0,.5);
+      --shadow-lg:0 34px 80px rgba(0,0,0,.62);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#EDF3F9; --panel:#FFFFFF; --panel-2:#E7EFF6; --panel-3:#D7E4F0;
+    --ink:#122F47; --ink-soft:#375369; --muted:#6E879B; --line:#DBE7F1;
+    --brand:#1573BC; --brand-2:#1E86D6;
+    --vera:#F58220; --vera-ink:#C6600C; --vera-soft:#FCEAD6;
+    --wa-bubble:#DCF3DF; --wa-field:#E7EFF6;
+    --warn:#B5730E; --warn-soft:#FAEBD3; --danger:#C0392B; --danger-soft:#FBE2DE;
+    --shadow-sm:0 1px 2px rgba(18,47,71,.07);
+    --shadow:0 1px 2px rgba(18,47,71,.06), 0 10px 34px rgba(18,47,71,.10);
+    --shadow-lg:0 30px 70px rgba(18,47,71,.22);
+  }
+  :root[data-theme="dark"]{
+    --ground:#0C1621; --panel:#122334; --panel-2:#182C41; --panel-3:#213950;
+    --ink:#E7F0F8; --ink-soft:#BCD1E3; --muted:#8AA4BC; --line:#233A51;
+    --brand:#2E93DE; --brand-2:#60B4EC;
+    --vera:#F79448; --vera-ink:#F9AE73; --vera-soft:#2A1B10;
+    --wa-bubble:#DCF3DF; --wa-field:#E7EFF6;
+    --warn:#D8A552; --warn-soft:#2E2312; --danger:#E8837A; --danger-soft:#331A1A;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+    --shadow:0 1px 2px rgba(0,0,0,.35), 0 12px 38px rgba(0,0,0,.5);
+    --shadow-lg:0 34px 80px rgba(0,0,0,.62);
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0}
+  .page{
+    background:
+      radial-gradient(1200px 620px at 84% -12%, color-mix(in srgb, var(--brand-2) 16%, transparent), transparent 60%),
+      radial-gradient(900px 500px at 5% 8%, color-mix(in srgb, var(--vera) 10%, transparent), transparent 55%),
+      var(--ground);
+    color:var(--ink); font-family:var(--sans);
+    font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+  section{padding:74px 0}
+  @media (max-width:640px){ .page{font-size:16px} section{padding:50px 0} }
+
+  h1,h2,h3{font-family:var(--serif); font-weight:600; color:var(--ink); text-wrap:balance; margin:0}
+  h1{font-size:clamp(2.1rem,5.4vw,3.5rem); line-height:1.07; letter-spacing:-.012em}
+  h2{font-size:clamp(1.62rem,3.6vw,2.5rem); line-height:1.13; letter-spacing:-.008em}
+  h3{font-size:1.22rem; line-height:1.28}
+  p{margin:0}
+  .lead{font-size:clamp(1.08rem,2vw,1.3rem); color:var(--ink-soft); line-height:1.56; max-width:64ch}
+  .prose{color:var(--ink-soft); max-width:62ch}
+  b,strong{color:var(--ink); font-weight:650}
+  a{color:inherit}
+  .num{font-variant-numeric:tabular-nums}
+
+  .eyebrow{font-family:var(--sans); font-size:.74rem; font-weight:700; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--brand-2); display:inline-flex; align-items:center; gap:.6em}
+  .eyebrow::before{content:""; width:26px; height:2px; background:var(--brand-2); border-radius:2px; opacity:.75}
+
+  .stack{display:flex; flex-direction:column}
+  .g14{gap:14px} .g20{gap:20px} .g28{gap:28px} .g40{gap:40px}
+
+  .top{position:sticky; top:0; z-index:20; backdrop-filter:saturate(1.3) blur(10px);
+    background:color-mix(in srgb, var(--ground) 84%, transparent); border-bottom:1px solid var(--line)}
+  .top .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:13px; padding-bottom:13px}
+  .brandmark{display:flex; align-items:center; gap:11px; font-weight:700; letter-spacing:-.01em; color:var(--ink); font-family:var(--serif)}
+  .logo{width:34px; height:34px; border-radius:50%; display:grid; place-items:center; color:#eaf4fc;
+    background:radial-gradient(120% 120% at 30% 20%, var(--brand-2), var(--brand)); box-shadow:var(--shadow-sm); flex:none}
+  .logo svg{width:19px; height:19px}
+  .brandmark small{display:block; font-weight:500; font-size:.72rem; letter-spacing:.01em; color:var(--muted); font-family:var(--sans)}
+  .top .tag{font-size:.8rem; color:var(--muted); font-weight:600}
+  @media (max-width:600px){ .top .tag{display:none} }
+
+  .hero{padding-top:60px; padding-bottom:34px}
+  .hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:52px; align-items:center}
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr; gap:36px} }
+  .hero h1 .grn{color:var(--vera-ink); font-style:italic}
+  .kicker{display:inline-flex; gap:8px; align-items:center; font-weight:650; font-size:.86rem;
+    color:var(--vera-ink); background:var(--vera-soft); border:1px solid color-mix(in srgb,var(--vera) 34%, transparent);
+    padding:6px 13px; border-radius:999px}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--vera);box-shadow:0 0 0 4px color-mix(in srgb,var(--vera) 24%,transparent)}
+  .proofrow{display:flex; flex-wrap:wrap; gap:12px 26px; margin-top:6px}
+  .proof{display:flex; align-items:baseline; gap:9px}
+  .proof .n{font-family:var(--serif); font-weight:650; font-size:1.5rem; color:var(--ink); letter-spacing:-.01em}
+  .proof .l{font-size:.86rem; color:var(--muted); max-width:15ch; line-height:1.25}
+
+  .phone{width:100%; max-width:340px; margin:0 auto; border-radius:34px; padding:11px;
+    background:linear-gradient(160deg,#14212d,#0a1017); box-shadow:var(--shadow-lg); border:1px solid rgba(255,255,255,.06)}
+  .phone-scr{border-radius:24px; overflow:hidden; background:var(--wa-field); display:flex; flex-direction:column; min-height:460px}
+  .wa-head{background:linear-gradient(180deg,#0f9b57,#0c823f); color:#eafff3; padding:13px 15px; display:flex; align-items:center; gap:11px}
+  .wa-av{width:34px;height:34px;border-radius:50%; background:rgba(255,255,255,.18); display:grid; place-items:center; font-weight:700; font-size:.95rem; flex:none}
+  .wa-head .nm{font-weight:700; font-size:.98rem; line-height:1.1}
+  .wa-head .st{font-size:.72rem; opacity:.86}
+  .wa-body{padding:15px 13px; display:flex; flex-direction:column; gap:9px; flex:1;
+    background-image:radial-gradient(rgba(21,115,188,.05) 1px, transparent 0); background-size:16px 16px}
+  .msg{max-width:85%; padding:9px 12px; border-radius:14px; font-size:.9rem; line-height:1.4; box-shadow:var(--shadow-sm); color:#132230; position:relative}
+  .react{position:absolute; bottom:-10px; right:7px; background:#fff; border:1px solid #d7e3ee; border-radius:999px;
+    padding:0 5px 1px; font-size:.86rem; line-height:1.5; box-shadow:0 1px 4px rgba(18,47,71,.2); z-index:2}
+  .msg.in{align-self:flex-start; background:#fff; border-top-left-radius:5px}
+  .msg.out{align-self:flex-end; background:var(--wa-bubble); border-top-right-radius:5px}
+  .msg .who{font-size:.68rem; font-weight:800; letter-spacing:.02em; color:#C6600C; margin-bottom:2px}
+  .msg .t{font-size:.66rem; color:#7c8b98; text-align:right; margin-top:3px}
+  .msg ul{margin:6px 0 2px; padding-left:2px; list-style:none; display:flex; flex-direction:column; gap:5px}
+  .msg li{display:flex; gap:7px; align-items:flex-start; font-size:.86rem}
+  .msg li span:first-child{flex:none}
+  .wa-btn{align-self:stretch; margin-top:2px; background:#fff; color:#C6600C; border:1px solid color-mix(in srgb,var(--vera) 45%,#fff);
+    border-radius:11px; padding:9px; text-align:center; font-weight:700; font-size:.84rem; box-shadow:var(--shadow-sm)}
+  .wa-note{align-self:center; background:rgba(21,115,188,.07); color:#4f6a80; font-size:.72rem; padding:5px 11px; border-radius:9px; text-align:center; max-width:92%}
+
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow)}
+  .pad{padding:26px}
+  @media (max-width:640px){ .pad{padding:20px} }
+
+  .sec-head{max-width:60ch}
+  .sec-head h2{margin-top:14px}
+  .sec-head .lead{margin-top:14px}
+
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center}
+  .split.rev .art{order:2}
+  @media (max-width:900px){ .split{grid-template-columns:1fr; gap:30px} .split.rev .art{order:0} }
+
+  .tiles{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+  @media (max-width:820px){ .tiles{grid-template-columns:repeat(2,1fr)} }
+  .tile{background:var(--panel); border:1px solid var(--line); border-radius:15px; padding:18px 18px 16px; box-shadow:var(--shadow-sm)}
+  .tile .k{font-size:.78rem; color:var(--muted); font-weight:600}
+  .tile .v{font-family:var(--serif); font-size:1.72rem; font-weight:650; letter-spacing:-.01em; margin-top:6px; color:var(--ink)}
+  .tile .s{font-size:.78rem; margin-top:3px; color:var(--muted)}
+  .tile.warn .v{color:var(--warn)} .tile.good .v{color:var(--vera-ink)} .tile.blue .v{color:var(--brand)}
+
+  .ledger{display:flex; flex-direction:column}
+  .ledger .row{display:flex; align-items:center; gap:14px; padding:12px 2px; border-bottom:1px solid var(--line)}
+  .ledger .row:last-child{border-bottom:0}
+  .ledger .ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:none;background:var(--panel-2);font-size:.95rem}
+  .ledger .main{flex:1; min-width:0}
+  .ledger .main .a{font-weight:600; font-size:.94rem}
+  .ledger .main .b{font-size:.8rem; color:var(--muted)}
+  .ledger .amt{font-weight:700; font-variant-numeric:tabular-nums; font-size:.94rem; white-space:nowrap}
+  .pill{font-size:.72rem; font-weight:700; padding:3px 9px; border-radius:999px; white-space:nowrap}
+  .pill.g{color:var(--vera-ink); background:var(--vera-soft)}
+  .pill.w{color:var(--warn); background:var(--warn-soft)}
+  .pill.n{color:var(--muted); background:var(--panel-2)}
+  .pill.b{color:var(--brand); background:color-mix(in srgb,var(--brand) 12%,transparent)}
+
+  .steps{display:grid; grid-template-columns:1fr; gap:12px}
+  .step{background:var(--panel); border:1px solid var(--line); border-radius:15px; padding:18px 20px; box-shadow:var(--shadow-sm)}
+  .step .n{font-family:var(--serif); font-size:.95rem; font-weight:700; color:#eaf4fc; width:28px;height:28px;border-radius:8px;
+    display:grid;place-items:center; background:radial-gradient(120% 120% at 30% 20%,var(--brand-2),var(--brand)); margin-bottom:12px}
+  .step h3{font-size:1.02rem}
+  .step p{font-size:.9rem; color:var(--muted); margin-top:6px}
+
+  .auto{display:flex; flex-direction:column; gap:2px}
+  .auto .r{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:13px 2px; border-bottom:1px solid var(--line)}
+  .auto .r:last-child{border-bottom:0}
+  .auto .r .lbl{font-weight:600; font-size:.96rem}
+  .badge{font-size:.76rem; font-weight:700; padding:5px 11px; border-radius:999px; white-space:nowrap}
+  .badge.solo{color:var(--vera-ink); background:var(--vera-soft); border:1px solid color-mix(in srgb,var(--vera) 30%,transparent)}
+  .badge.ok{color:var(--warn); background:var(--warn-soft); border:1px solid color-mix(in srgb,var(--warn) 30%,transparent)}
+
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+  @media (max-width:820px){ .grid3{grid-template-columns:1fr} }
+  .feat{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:24px; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; gap:10px}
+  .feat .fi{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--brand) 12%,transparent);color:var(--brand)}
+  .feat .fi svg{width:20px;height:20px}
+  .feat h3{font-size:1.08rem}
+  .feat p{font-size:.92rem; color:var(--muted)}
+
+  .quote{border-left:3px solid var(--brand-2); padding:6px 0 6px 22px; font-family:var(--serif);
+    font-size:clamp(1.2rem,2.4vw,1.66rem); line-height:1.34; color:var(--ink); text-wrap:balance; max-width:34ch}
+  .safebar{display:flex; gap:14px; align-items:flex-start; background:var(--danger-soft);
+    border:1px solid color-mix(in srgb,var(--danger) 30%,transparent); border-radius:14px; padding:16px 18px}
+  .safebar .si{color:var(--danger); flex:none; margin-top:1px}
+  .safebar b{color:var(--danger)}
+
+  .tagline{display:inline-flex; gap:8px; align-items:center; font-size:.78rem; font-weight:700; letter-spacing:.02em;
+    color:var(--brand-2); background:color-mix(in srgb,var(--brand-2) 13%,transparent); padding:5px 12px; border-radius:999px}
+  .roadmap-tag{font-size:.68rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--warn);
+    background:var(--warn-soft); padding:3px 9px; border-radius:6px; border:1px solid color-mix(in srgb,var(--warn) 26%,transparent)}
+  .demo-note{font-size:.82rem; color:var(--muted); background:color-mix(in srgb,var(--panel-2) 55%,transparent);
+    border:1px dashed color-mix(in srgb,var(--muted) 40%,var(--line)); border-radius:11px; padding:9px 13px; max-width:62ch}
+  .demo-note b{color:var(--ink-soft)}
+  .demo-badge{display:inline-flex; align-items:center; gap:6px; font-size:.65rem; font-weight:700; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--muted); background:color-mix(in srgb,var(--panel-2) 72%,transparent);
+    border:1px solid var(--line); padding:3px 9px; border-radius:999px; width:max-content}
+  .demo-badge::before{content:"✳"; color:var(--brand-2); font-size:.72rem}
+  .pref-chip{display:inline-flex; align-items:center; gap:6px; font-size:.82rem; font-weight:600; color:var(--ink-soft);
+    background:var(--panel-2); border:1px solid var(--line); padding:6px 12px; border-radius:999px}
+  .kpi-badge{display:inline-flex; align-items:center; gap:5px; font-size:.62rem; font-weight:800; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--vera-ink); background:var(--vera-soft); border:1px solid color-mix(in srgb,var(--vera) 30%,transparent);
+    padding:2px 8px; border-radius:999px}
+
+  /* Dashboard mock */
+  .dash{background:var(--panel); border:1px solid var(--line); border-radius:20px; box-shadow:var(--shadow); overflow:hidden}
+  .dash-top{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:20px 22px; border-bottom:1px solid var(--line); background:color-mix(in srgb,var(--panel-2) 40%,transparent)}
+  .dash-hi h3{font-family:var(--serif); font-size:1.3rem; font-weight:650}
+  .dash-hi .sub{font-size:.8rem; color:var(--muted); margin-top:2px}
+  .roles{display:flex; gap:6px; flex-wrap:wrap; margin-top:9px}
+  .role{font-size:.72rem; font-weight:600; padding:4px 11px; border-radius:999px; background:var(--panel-2); color:var(--muted); border:1px solid var(--line)}
+  .role.on{background:color-mix(in srgb,var(--brand) 13%,transparent); color:var(--brand); border-color:color-mix(in srgb,var(--brand) 26%,transparent)}
+  .present{font-size:.78rem; font-weight:700; color:var(--brand); background:var(--panel); border:1px solid color-mix(in srgb,var(--brand) 32%,transparent); padding:8px 14px; border-radius:999px; white-space:nowrap}
+  .dash-body{padding:20px 22px; display:flex; flex-direction:column; gap:14px}
+  .dgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:13px}
+  @media (max-width:760px){ .dgrid{grid-template-columns:1fr} }
+  .dcard{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:15px 16px; box-shadow:var(--shadow-sm)}
+  .dcard .dk{display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:.78rem; color:var(--muted); font-weight:600}
+  .dcard .dv{font-family:var(--serif); font-size:1.6rem; font-weight:650; letter-spacing:-.01em; margin-top:7px; color:var(--ink)}
+  .dcard .ds{font-size:.76rem; margin-top:3px; color:var(--muted)}
+  .dcard.good .dv{color:var(--vera-ink)} .dcard.danger .dv{color:var(--danger)}
+  .bar{height:7px; border-radius:99px; background:var(--panel-2); overflow:hidden; margin-top:10px}
+  .bar > i{display:block; height:100%; border-radius:99px; background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+  .risks{background:var(--warn-soft); border:1px solid color-mix(in srgb,var(--warn) 28%,transparent); border-radius:14px; padding:15px 17px}
+  .risks .rh{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap}
+  .risks .rh .t{font-weight:700; color:var(--warn); font-size:.92rem; display:flex; align-items:center; gap:8px}
+  .risks .rh .m{font-size:.78rem; color:var(--warn)}
+  .rgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:12px}
+  @media (max-width:760px){ .rgrid{grid-template-columns:1fr} }
+  .risk .a{font-weight:650; font-size:.9rem; color:var(--ink-soft)}
+  .risk .b{font-size:.78rem; color:var(--muted); margin-top:2px}
+
+  .closing{background:radial-gradient(140% 120% at 50% -20%, color-mix(in srgb,var(--brand) 82%, #46a6e6), var(--brand));
+    color:#eaf4fc; border-radius:26px; padding:56px 40px; text-align:center; box-shadow:var(--shadow-lg); position:relative; overflow:hidden}
+  .closing::after{content:""; position:absolute; inset:0; background:radial-gradient(700px 300px at 50% -20%, rgba(255,255,255,.16), transparent 60%); pointer-events:none}
+  .closing h2{color:#fff}
+  .closing .ce{color:#aed6f4; justify-content:center}
+  .closing .ce::before{background:#aed6f4}
+  .closing p{color:#d5e8f7; max-width:52ch; margin:16px auto 0}
+  .closing .duo{display:flex; gap:18px; justify-content:center; flex-wrap:wrap; margin-top:30px}
+  .duo .who{background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.18); border-radius:14px; padding:16px 20px; min-width:210px; text-align:left}
+  .duo .who .nm{font-weight:700; display:flex; align-items:center; gap:8px; color:#fff}
+  .duo .who .ds{font-size:.85rem; color:#d5e8f7; margin-top:4px}
+
+  footer{padding:40px 0 58px; color:var(--muted); font-size:.85rem; text-align:center}
+  footer .pw{font-weight:700; color:var(--ink-soft); font-family:var(--serif)}
+
+  .js .reveal{opacity:0; transform:translateY(16px)}
+  .js .reveal.in{opacity:1; transform:none; transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
+  @media (prefers-reduced-motion:reduce){ .js .reveal{opacity:1 !important; transform:none !important; transition:none} }
+  :focus-visible{outline:2.5px solid var(--brand-2); outline-offset:3px; border-radius:4px}
+</style>
+
+<div class="page">
+
+  <div class="top">
+    <div class="wrap">
+      <div class="brandmark">
+        <span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9A1.5 1.5 0 0 1 18.5 16H9l-4 4V5.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.2l2 2.2 4-4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>Vera Saúde<small>a clínica que opera conversando</small></span>
+      </div>
+      <span class="tag">Prévia para a Clínica Ela · Centro de Medicina</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="stack g20 reveal">
+          <span class="kicker"><span class="dot"></span> Duas assistentes, um só sistema</span>
+          <h1>A <span class="grn">Vera</span> atende seu paciente.<br>A <span class="grn">Verônica</span> cuida da sua clínica.</h1>
+          <p class="lead">As duas trabalham no WhatsApp: agendando, confirmando, cobrando, emitindo nota e te entregando a leitura do dia. <b>Sozinhas.</b> E te mostram tudo, todo dia de manhã, sem você pedir.</p>
+          <div class="proofrow" style="margin-top:8px">
+            <div class="proof"><span class="n">24/7</span><span class="l">responde a qualquer hora, até fora do expediente</span></div>
+            <div class="proof"><span class="n num">78%</span><span class="l">das conversas resolvidas sem tocar ninguém da equipe</span></div>
+            <div class="proof"><span class="n">R$ 6,2 mil</span><span class="l">de agenda vazia recuperada num mês</span></div>
+          </div>
+          <p class="demo-note" style="margin-top:8px">✳ As telas e os números desta página são <b>exemplos ilustrativos</b> que mostram como a Vera funciona. Não são dados reais da clínica.</p>
+        </div>
+        <div class="art reveal">
+          <div class="phone" role="img" aria-label="Conversa no WhatsApp entre a Vera e uma paciente, remarcando uma consulta sozinha">
+            <div class="phone-scr">
+              <div class="wa-head"><span class="wa-av">V</span><div><div class="nm">Vera</div><div class="st">online · atende pela sua clínica</div></div></div>
+              <div class="wa-body">
+                <div class="msg in"><div class="who">VERA</div>Oi, Ana! Vi que você tem consulta amanhã às 9h com a Dra. Marina. Confirmo?<div class="t">08:55</div></div>
+                <div class="msg out">Consegue passar pra sexta? Amanhã não vou conseguir.<div class="t">08:57</div></div>
+                <div class="msg in"><div class="who">VERA</div>Claro! Tenho sexta às 14h ou 16h. Qual prefere?<div class="t">08:57</div></div>
+                <div class="msg out" style="margin-bottom:9px">16h!<span class="react">💛</span><div class="t">08:58</div></div>
+                <div class="msg in"><div class="who">VERA</div>Prontinho, remarquei pra <b>sexta às 16h</b>. Já liberei o horário de amanhã e te lembro na quinta.<div class="t">08:58</div></div>
+                <div class="wa-note">✓ A Vera remarcou sozinha, reagiu à sua mensagem e atualizou a agenda · ninguém da equipe precisou tocar</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÁUDIO OU TEXTO -->
+  <section style="padding-top:10px; padding-bottom:24px">
+    <div class="wrap">
+      <div class="card pad reveal">
+        <div class="split" style="align-items:center; gap:34px">
+          <div>
+            <div style="display:flex; flex-direction:column; gap:5px; max-width:260px; margin:0 auto">
+              <div style="align-self:flex-start; background:var(--wa-bubble); border-radius:14px; border-top-left-radius:5px; padding:9px 12px; box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:9px">
+                <span style="width:26px;height:26px;border-radius:50%;background:#0f9b57;color:#fff;display:grid;place-items:center;flex:none;font-size:.7rem">▶</span>
+                <span style="display:flex;gap:2px;align-items:center;height:16px">
+                  <i style="width:3px;height:7px;background:#8a9a90;border-radius:2px"></i><i style="width:3px;height:13px;background:#4f9e73;border-radius:2px"></i><i style="width:3px;height:9px;background:#8a9a90;border-radius:2px"></i><i style="width:3px;height:16px;background:#4f9e73;border-radius:2px"></i><i style="width:3px;height:8px;background:#8a9a90;border-radius:2px"></i><i style="width:3px;height:12px;background:#4f9e73;border-radius:2px"></i><i style="width:3px;height:10px;background:#8a9a90;border-radius:2px"></i>
+                </span>
+                <span style="font-size:.66rem;color:#5b6b60">0:08</span>
+              </div>
+              <span style="align-self:flex-start; font-size:.68rem; color:var(--muted); padding-left:4px">🎙️ manda áudio · ouve a resposta em voz</span>
+              <div style="align-self:flex-end; background:var(--panel-2); border:1px solid var(--line); border-radius:14px; border-top-right-radius:5px; padding:8px 12px; font-size:.84rem; color:var(--ink); box-shadow:var(--shadow-sm); margin-top:6px">Prefiro por texto</div>
+              <span style="align-self:flex-end; font-size:.68rem; color:var(--muted); padding-right:4px">💬 recebe tudo escrito</span>
+            </div>
+          </div>
+          <div>
+            <span class="eyebrow">Áudio ou texto · do jeito de cada pessoa</span>
+            <h3 style="font-family:var(--serif); font-weight:600; font-size:clamp(1.3rem,2.7vw,1.72rem); line-height:1.2; margin-top:10px; text-wrap:balance">A Vera e a Verônica <span style="color:var(--vera-ink); font-style:italic">entendem e respondem em áudio</span> ou em texto. Cada um escolhe.</h3>
+            <p class="prose" style="margin-top:10px">No Brasil, muita gente só manda áudio. A Vera ouve o paciente e responde com <b>voz natural</b>; a Verônica faz o mesmo com a equipe. Quem prefere ler, recebe texto. Elas se adaptam ao jeito de cada pessoa, <b>sem configurar nada</b>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUE É DIFERENTE -->
+  <section>
+    <div class="wrap stack g28">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Por que é diferente</span>
+        <h2>Os outros sistemas entram depois que alguém já digitou.<br>A Vera entra antes, na conversa.</h2>
+        <p class="lead">O paciente não abre portal nem instala app: ele manda mensagem no WhatsApp, como já faz. É ali que a demanda nasce, e é ali que a Vera já está, transformando cada conversa em agenda, cobrança e cadastro, sem trabalho manual.</p>
+      </div>
+      <div class="grid3">
+        <div class="feat reveal">
+          <div class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 1 0 4.5 16.8L21 21l-1.2-4.5A9 9 0 0 0 12 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+          <h3>No WhatsApp, no seu número</h3>
+          <p>Funciona no mesmo número e no mesmo app que a clínica já usa. Nada de trocar de linha nem migrar contatos.</p>
+        </div>
+        <div class="feat reveal">
+          <div class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8V4M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0 8v4M4 12h4m8 0h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+          <h3>O agente que age</h3>
+          <p>O valor não está no painel bonito. Está na Vera que <b>faz</b>: recupera agenda, reduz falta, opera o WhatsApp com inteligência.</p>
+        </div>
+        <div class="feat reveal">
+          <div class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h10M4 17h7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M17 15l2 2 3-3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Você vê tudo, sem procurar</h3>
+          <p>Toda ação vira registro. E toda manhã a Verônica te entrega o resumo, o controle do negócio que hoje mora só no app do banco.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UM ATENDIMENTO QUE ACOLHE -->
+  <section>
+    <div class="wrap">
+      <div class="split" style="align-items:center">
+        <div class="art reveal">
+          <div class="phone" role="img" aria-label="A Vera usando as preferências salvas do paciente para oferecer horário e pagamento do jeito que ele gosta">
+            <div class="phone-scr">
+              <div class="wa-head"><span class="wa-av">V</span><div><div class="nm">Vera</div><div class="st">online · atende pela sua clínica</div></div></div>
+              <div class="wa-body">
+                <div class="msg out">Oi! Queria marcar meu retorno do pré-natal<div class="t">17:40</div></div>
+                <div class="msg in"><div class="who">VERA</div>Oi, Ana! Que bom te ver por aqui. Vi que você está no <b>pré-natal com a Dra. Marina</b> e costuma vir no <b>fim da tarde</b>. Tenho quinta às 17h ou sexta às 18h. Qual prefere?<div class="t">17:40</div></div>
+                <div class="msg out">Sexta 18h!<div class="t">17:41</div></div>
+                <div class="msg in"><div class="who">VERA</div>Fechado. Sexta 18h com a Dra. Marina. Deixo o <b>Pix</b> pronto como sempre e mando a <b>nota</b> depois. E te lembro na quinta.<div class="t">17:41</div></div>
+                <div class="msg out" style="margin-bottom:9px">Perfeito, obrigada!<span class="react">💛</span><div class="t">17:42</div></div>
+                <div class="wa-note">Ela lembrou do pré-natal, do horário, do Pix e da nota, sem a Ana repetir nada</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="stack g20 reveal">
+          <span class="eyebrow">Um atendimento que acolhe</span>
+          <h2>A Vera lembra do jeito de cada paciente e faz ela se sentir em casa.</h2>
+          <p class="prose">Turno preferido, forma de pagamento, se precisa de nota, se está em pré-natal, se gosta de áudio ou texto. A Vera guarda o jeito de cada uma e usa nos próximos contatos, <b>sem a paciente repetir</b>. Ela aprende com cuidado: percebe o padrão e <b>confirma de leve</b> ("vi que você costuma vir de manhã, mantenho?") antes de assumir. Nunca impõe.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px">
+            <span class="pref-chip">🌇 Turno: fim da tarde</span>
+            <span class="pref-chip">💠 Pagamento: Pix</span>
+            <span class="pref-chip">🧾 Nota fiscal: sim</span>
+            <span class="pref-chip">🎙️ Formato: áudio</span>
+            <span class="pref-chip">🤰 Pré-natal · Dra. Marina</span>
+          </div>
+          <p class="prose" style="font-size:.95rem; color:var(--muted)">O resultado é um atendimento mais rápido, mais natural e mais acolhedor: a paciente sente que a clínica <b>conhece ela</b>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REMARCAR O DIA INTEIRO -->
+  <section>
+    <div class="wrap">
+      <div class="split" style="align-items:center">
+        <div class="stack g20 reveal">
+          <span class="eyebrow">Quando o dia vira de cabeça pra baixo</span>
+          <h2>O médico avisou que não vem? A Vera remarca o dia inteiro sozinha.</h2>
+          <p class="prose">Acontece toda semana: um imprevisto, um profissional que não pode vir, e a agenda do dia inteiro precisa mudar. Em vez de a recepção ligar paciente por paciente, a Vera <b>fala com todos</b>, oferece novos horários, reagenda cada um e libera o dia. Você só recebe o resultado, e ninguém fica sem aviso.</p>
+          <div class="proofrow">
+            <div class="proof"><span class="n num">8</span><span class="l">pacientes remarcados sozinhos em minutos</span></div>
+            <div class="proof"><span class="n num">0</span><span class="l">ligações da recepção</span></div>
+          </div>
+        </div>
+        <div class="art reveal">
+          <div class="card pad stack g14" role="img" aria-label="A Vera remarcando os 8 pacientes de um dia inteiro depois que o médico avisou que não vem">
+            <div style="display:flex;align-items:center;gap:11px;background:var(--vera-soft);border:1px solid color-mix(in srgb,var(--vera) 28%,transparent);border-radius:12px;padding:11px 13px">
+              <span style="width:30px;height:30px;border-radius:50%;background:var(--vera);color:#fff;display:grid;place-items:center;flex:none;font-size:.9rem">✳</span>
+              <div style="font-size:.9rem;color:var(--ink-soft)"><b>Dr. Ribeiro não vem quinta.</b> São 8 pacientes, já estou remarcando todos.</div>
+            </div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between">
+              <h3 style="font-family:var(--sans);font-weight:700;font-size:.98rem">Quinta · agenda do Dr. Ribeiro</h3>
+              <span class="pill n">remarcando</span>
+            </div>
+            <div class="ledger">
+              <div class="row"><span class="ic">🕘</span><div class="main"><div class="a">09:00 · Ana</div><div class="b">→ sexta, 16h</div></div><span class="pill g">remarcado</span></div>
+              <div class="row"><span class="ic">🕙</span><div class="main"><div class="a">10:00 · Marcos</div><div class="b">→ segunda, 09h</div></div><span class="pill g">remarcado</span></div>
+              <div class="row"><span class="ic">🕚</span><div class="main"><div class="a">11:00 · Carla</div><div class="b">aguardando resposta</div></div><span class="pill w">enviado</span></div>
+              <div class="row"><span class="ic">🕐</span><div class="main"><div class="a">14:00 · Paulo</div><div class="b">→ quinta que vem, 14h</div></div><span class="pill g">remarcado</span></div>
+              <div class="row" style="border-bottom:0"><span class="ic">⋯</span><div class="main"><div class="a">+ 4 pacientes</div><div class="b">6 remarcados · 2 aguardando resposta</div></div><span class="pill n">quase lá</span></div>
+            </div>
+            <div style="align-self:stretch;text-align:center;font-size:.8rem;color:var(--vera-ink);background:var(--vera-soft);border-radius:10px;padding:8px 12px">✓ Quinta liberada · ninguém ficou sem aviso · você não tocou o telefone</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÁQUINA DE RECEITA -->
+  <section>
+    <div class="wrap">
+      <div class="split">
+        <div class="stack g20 reveal">
+          <span class="eyebrow">A máquina de receita</span>
+          <h2>Ela enche a sua agenda sem você pedir.</h2>
+          <p class="prose">A Vera acha sozinha quem sumiu, quem faltou e quem está na hora do retorno (pré-natal, ginecologia, revisão), e propõe trazer de volta. Você aprova o lote <b>num toque</b>. Ela dispara, agenda e confirma. Agenda que estava vazia virando receita, em piloto automático, mas com você no comando.</p>
+          <span class="demo-badge">exemplo ilustrativo</span>
+          <div class="tiles" style="grid-template-columns:repeat(2,1fr); max-width:440px">
+            <div class="tile good"><div class="k">Receita recuperada</div><div class="v num">R$ 6.240</div><div class="s">reativação + no-show · no mês</div></div>
+            <div class="tile good"><div class="k">Taxa de falta (no-show)</div><div class="v num">2,1%</div><div class="s">era 2,7%, a Vera confirma e reagenda</div></div>
+          </div>
+          <div class="safebar reveal" style="background:var(--vera-soft); border-color:color-mix(in srgb,var(--vera) 30%,transparent)">
+            <span class="si" style="color:var(--vera-ink)" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-4.5 7-10V6l-7-3-7 3v5c0 5.5 7 10 7 10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <p style="font-size:.92rem; color:var(--ink-soft)"><b style="color:var(--vera-ink)">Reativação respeitosa, você no comando.</b> A Vera traz de volta quem está na hora do retorno ou sumiu, sempre com <b>você aprovando o lote</b> e com um tom cuidadoso. Nunca insistente, nunca invasiva, e com opção de não receber mais.</p>
+          </div>
+        </div>
+        <div class="art reveal">
+          <div class="card pad stack g20">
+            <span class="tagline">Propor → Aprovar → Agir</span>
+            <div class="steps">
+              <div class="step"><div class="n">1</div><h3>A Vera propõe</h3><p>"12 pacientes sem retornar há 6+ meses. Reativar?" Ela já rascunhou a mensagem.</p></div>
+              <div class="step"><div class="n">2</div><h3>Você aprova (1 toque)</h3><p>Um toque no botão. Sem fila de aprovação, sem digitar nada.</p></div>
+              <div class="step"><div class="n">3</div><h3>Ela age</h3><p>Dispara com carinho, agenda quem responde e te avisa o resultado.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINANCEIRO -->
+  <section>
+    <div class="wrap stack g28">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Financeiro</span>
+        <h2>O caixa que hoje vive no app do banco, organizado e conciliado sozinho.</h2>
+        <p class="lead">Quanto entrou, quanto falta, quem está devendo. A Vera cobra os não-confirmados, bate o Pix com a agenda automaticamente e te mostra o dia fechado. Com vários profissionais na clínica, você enxerga o resultado de cada um separado.</p>
+      </div>
+      <span class="demo-badge">exemplo ilustrativo</span>
+      <div class="tiles reveal">
+        <div class="tile"><div class="k">Caixa de ontem</div><div class="v num">R$ 4.280</div><div class="s">fechado e conferido ✓</div></div>
+        <div class="tile"><div class="k">A receber hoje</div><div class="v num">R$ 1.150</div><div class="s">6 lançamentos</div></div>
+        <div class="tile good"><div class="k">Recebido no mês</div><div class="v num">R$ 38,9 mil</div><div class="s">+8% vs. mês passado</div></div>
+        <div class="tile warn"><div class="k">Inadimplência</div><div class="v num">R$ 640</div><div class="s">3 pacientes · a Vera já está cobrando</div></div>
+      </div>
+      <div class="split" style="margin-top:6px">
+        <div class="card pad reveal">
+          <div class="stack g14">
+            <div style="display:flex; align-items:center; justify-content:space-between"><h3 style="font-family:var(--sans); font-weight:700; font-size:1rem">Conciliação · automática</h3><span class="pill n">Pix ↔ agenda</span></div>
+            <div class="ledger">
+              <div class="row"><span class="ic" style="color:var(--vera-ink)">✓</span><div class="main"><div class="a">Marcos Souza</div><div class="b">Pix bateu com a consulta de hoje</div></div><span class="amt" style="color:var(--vera-ink)">R$ 150</span></div>
+              <div class="row"><span class="ic" style="color:var(--warn)">!</span><div class="main"><div class="a">Pagamento avulso</div><div class="b">sem agendamento, a Vera separou pra revisar</div></div><span class="amt">R$ 90</span></div>
+              <div class="row"><span class="ic">↻</span><div class="main"><div class="a">3 não-confirmados de amanhã</div><div class="b">lembrete de cobrança enviado</div></div><span class="pill g">cobrando</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="stack g20 reveal">
+          <div class="quote">"A Vera gera o link de cobrança, o pagamento confirma, e a conciliação acontece sozinha."</div>
+          <p class="prose" style="font-size:.95rem">Você para de caçar comprovante e de cruzar planilha com extrato. O que era uma tarde de recepção vira uma linha no painel, e uma trava de segurança garante que <b>a Vera só cobra num meio de recebimento validado por você</b>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANÇAR CONTAS POR ÁUDIO -->
+  <section style="padding-top:22px">
+    <div class="wrap">
+      <div class="split" style="align-items:center">
+        <div class="art reveal">
+          <div class="phone" style="max-width:324px" role="img" aria-label="Um áudio no WhatsApp lançando uma conta a pagar, que a Verônica registra na hora">
+            <div class="phone-scr" style="min-height:320px">
+              <div class="wa-head"><span class="wa-av">✳</span><div><div class="nm">Verônica</div><div class="st">online · sua assistente da equipe</div></div></div>
+              <div class="wa-body">
+                <div class="msg out" style="padding:11px 12px; max-width:92%">
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <span style="width:30px;height:30px;border-radius:50%;background:#0f9b57;color:#fff;display:grid;place-items:center;flex:none;font-size:.8rem">▶</span>
+                    <span style="display:flex;gap:3px;align-items:center;flex:1;height:22px">
+                      <i style="width:3px;height:8px;background:#8a9a90;border-radius:2px"></i><i style="width:3px;height:15px;background:#4f9e73;border-radius:2px"></i><i style="width:3px;height:11px;background:#8a9a90;border-radius:2px"></i><i style="width:3px;height:20px;background:#4f9e73;border-radius:2px"></i><i style="width:3px;height:7px;background:#8a9a90;border-radius:2px"></i><i style="width:3px;height:14px;background:#4f9e73;border-radius:2px"></i><i style="width:3px;height:10px;background:#8a9a90;border-radius:2px"></i><i style="width:3px;height:17px;background:#4f9e73;border-radius:2px"></i><i style="width:3px;height:9px;background:#8a9a90;border-radius:2px"></i><i style="width:3px;height:13px;background:#4f9e73;border-radius:2px"></i>
+                    </span>
+                    <span style="font-size:.72rem;color:#7a8791">0:06</span>
+                  </div>
+                  <div style="font-size:.78rem;color:#4a5a50;margin-top:7px;font-style:italic">"Cirúrgica Goiânia, trezentos e doze reais, vence dia 15."</div>
+                  <div class="t">09:12</div>
+                </div>
+                <div class="msg in"><div class="who">VERÔNICA</div>Lançado ✓ <b>R$ 312 · Cirúrgica Goiânia · vence 15/07.</b> Te aviso no dia de pagar.<div class="t">09:12</div></div>
+                <div class="wa-note">↓ e no dia certo, isso volta pra você no Noticiário</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="stack g20 reveal">
+          <span class="eyebrow">Lançar contas · por voz</span>
+          <h2>Lance as contas a pagar <span style="color:var(--vera-ink);font-style:italic">falando</span>.</h2>
+          <p class="prose">Manda um áudio no WhatsApp, <i>"Cirúrgica Goiânia, 312 reais, vence dia 15"</i>, e pronto: a conta está lançada. Sem abrir sistema, sem digitar, no meio da correria do dia. A Verônica entende, registra e, no dia de pagar, <b>traz de volta pra você no Noticiário do Dia</b>.</p>
+          <p class="prose" style="font-size:.96rem; color:var(--muted)">É a filosofia do produto num gesto só: você <b>fala</b>, o sistema faz o trabalho chato, e a informação volta organizada na hora certa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FISCAL -->
+  <section>
+    <div class="wrap stack g28">
+      <div class="sec-head reveal">
+        <span style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span class="eyebrow">Módulo fiscal · NFS-e</span><span class="roadmap-tag">Entra no seu projeto</span></span>
+        <h2>A nota que a recepção emite uma a uma no site da prefeitura, agora automática.</h2>
+        <p class="lead">Assim que o pagamento confirma, o paciente recebe a <b>nota fiscal no WhatsApp</b>. Sem digitar, sem fila, sem esquecer. É o mesmo princípio do resto: o sistema faz sozinho o que hoje é trabalho manual.</p>
+      </div>
+      <div class="grid3">
+        <div class="feat reveal">
+          <div class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h9l3 3v15H6V3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 3v4h4M9 12h6M9 16h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+          <h3>Nota no ato do pagamento</h3>
+          <p>Confirmou o pagamento, emitiu a nota e mandou pro paciente, que precisa dela pra abater no Imposto de Renda.</p>
+        </div>
+        <div class="feat reveal">
+          <div class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M16 11a4 4 0 1 0-8 0M4 20a8 8 0 0 1 16 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="7" r="3.2" stroke="currentColor" stroke-width="1.7"/></svg></div>
+          <h3>Cada profissional, a sua nota</h3>
+          <p>Vários médicos na clínica: cada um emite no próprio CNPJ, e você acompanha tudo consolidado num lugar só.</p>
+        </div>
+        <div class="feat reveal">
+          <div class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7l8-4 8 4-8 4-8-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M4 12l8 4 8-4M4 17l8 4 8-4" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+          <h3>Cada serviço, a classificação certa</h3>
+          <p>Consulta, exame ou procedimento: a nota sai com a classificação fiscal correta de serviços de saúde, sem a recepção decidir na hora.</p>
+        </div>
+      </div>
+      <div class="safebar reveal">
+        <span class="si" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5.5-8 9-8 9s-8-3.5-8-9V7l8-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 8v4m0 3h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        <p style="font-size:.94rem; color:var(--ink-soft)"><b>Trava de segurança fiscal.</b> Sem emitente validado, a Vera não emite nota, e sem meio de recebimento validado, não cobra. A automação começa <b>assistida</b> por profissional: a primeira nota você valida; depois, ela roda sozinha.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERÔNICA -->
+  <section>
+    <div class="wrap">
+      <div class="split rev" style="align-items:start">
+        <div class="art reveal">
+          <div class="phone" role="img" aria-label="O Noticiário do Dia que a Verônica envia no WhatsApp da gestora toda manhã">
+            <div class="phone-scr">
+              <div class="wa-head"><span class="wa-av">✳</span><div><div class="nm">Verônica</div><div class="st">online · sua assistente da equipe</div></div></div>
+              <div class="wa-body">
+                <div class="msg in" style="max-width:96%"><div class="who">VERÔNICA · 07:30</div>
+                  <b>Bom dia, Dra.</b> Seu resumo de hoje:
+                  <ul>
+                    <li><span style="color:#C6600C">•</span><span>12 consultas · 2 horários livres (14h e 16h)</span></li>
+                    <li><span style="color:#C6600C">•</span><span>9 confirmadas · <b>3 ainda não confirmaram amanhã</b></span></li>
+                    <li><span style="color:#C6600C">•</span><span>Caixa de ontem <b>R$ 4.280</b> · a receber hoje R$ 1.150</span></li>
+                    <li><span style="color:#C6600C">•</span><span>A pagar hoje: <b>R$ 312</b> para a Cirúrgica Goiânia</span></li>
+                    <li><span style="color:#C6600C">•</span><span>5 pacientes bons pra reativar</span></li>
+                  </ul>
+                  <div class="t">07:30</div>
+                </div>
+                <div class="msg in" style="max-width:96%; background:#eaf1f7; color:var(--ink)">
+                  <div class="who" style="color:var(--brand-2)">PRECISA DO SEU OK</div>
+                  <div style="font-size:.86rem; color:var(--ink-soft)">Quer que eu cobre os 3 não-confirmados agora?</div>
+                  <div class="wa-btn" style="margin-top:8px">Cobrar os 3 · num toque</div>
+                </div>
+                <div class="wa-note">Ela separa o que é pra <b>ler</b> do que é pra <b>decidir</b>. Você decide num toque.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="stack g20 reveal">
+          <span class="eyebrow">A joia da coroa · Verônica</span>
+          <h2>Sua chefe de gabinete. Chega às 7h30 no seu WhatsApp, antes de você pedir.</h2>
+          <p class="prose">A Verônica é <b>ativa</b>: ela não espera ser chamada. Todo dia de manhã manda o <b>Noticiário do Dia</b>: a leitura do negócio que você nunca teve, porque hoje acompanha a clínica só pelo app do banco. Primeiro o que é pra <b>ler</b> (agenda, caixa, contas, faltas); depois o que é pra <b>decidir</b>, num toque.</p>
+          <div class="card pad stack g14" style="margin-top:4px">
+            <h3 style="font-family:var(--sans); font-weight:700; font-size:1rem">O que a Verônica já fez hoje, sozinha</h3>
+            <div class="ledger">
+              <div class="row"><span class="ic">🗓️</span><div class="main"><div class="a">Remarcou o retorno da Ana pra sexta</div><div class="b">e liberou o horário de amanhã</div></div><span class="pill g">sozinha</span></div>
+              <div class="row"><span class="ic">📞</span><div class="main"><div class="a">Confirmou 3 consultas de amanhã</div><div class="b">2 já responderam</div></div><span class="pill g">sozinha</span></div>
+              <div class="row"><span class="ic">💗</span><div class="main"><div class="a">Reativou 5 pacientes sem retorno</div><div class="b">1 já reagendou</div></div><span class="pill g">sozinha</span></div>
+              <div class="row"><span class="ic">💸</span><div class="main"><div class="a">Conciliou o Pix do Marcos com a agenda</div><div class="b">R$ 150 batido</div></div><span class="pill g">sozinha</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card pad reveal" style="margin-top:34px">
+        <div class="stack g14">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:8px">
+            <h3 style="font-family:var(--sans); font-weight:700; font-size:1.05rem">Você decide o quanto ela faz sozinha</h3>
+            <span style="font-size:.84rem; color:var(--muted)">a confiança cresce com o uso: libere "sozinha" quando quiser</span>
+          </div>
+          <div class="auto">
+            <div class="r"><span class="lbl">Consultar a agenda e o histórico</span><span class="badge solo">sozinha</span></div>
+            <div class="r"><span class="lbl">Lembrar, confirmar e remarcar</span><span class="badge solo">sozinha</span></div>
+            <div class="r"><span class="lbl">Reativar sem retorno / recuperar faltas</span><span class="badge ok">pede seu ok (em lote)</span></div>
+            <div class="r"><span class="lbl">Cobrar dinheiro</span><span class="badge ok">pede seu ok</span></div>
+            <div class="r"><span class="lbl">Fazer pedido a fornecedor</span><span class="badge ok">pede seu ok</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section>
+    <div class="wrap stack g28">
+      <div class="sec-head reveal">
+        <span class="eyebrow">O painel do gestor · Dashboard</span>
+        <h2>E quando você abre o painel, a clínica inteira cabe numa tela.</h2>
+        <p class="lead">O mesmo que a Verônica te manda no WhatsApp, organizado no painel: faturamento, ocupação, riscos e a prova do que a Vera trouxe. Cada papel (gestor, profissional, recepção) vê só o que pode agir, e o <b>Modo apresentação</b> destaca os números pra você mostrar pra sócia.</p>
+      </div>
+      <span class="demo-badge">exemplo ilustrativo</span>
+      <div class="dash reveal" role="img" aria-label="Painel do gestor da Vera com faturamento, receita trazida pela Vera, no-show, ocupação, riscos e o resumo do dia">
+        <div class="dash-top">
+          <div class="dash-hi">
+            <h3>Bom dia, Dra. Marina 🌞</h3>
+            <div class="sub">Terça, 3 de julho · Clínica Ela</div>
+            <div class="roles"><span class="role on">Gestor</span><span class="role">Profissional</span><span class="role">Recepção</span></div>
+          </div>
+          <span class="present">🎥 Modo apresentação</span>
+        </div>
+        <div class="dash-body">
+          <div class="dgrid">
+            <div class="dcard">
+              <div class="dk"><span>⭐ Faturamento do mês</span></div>
+              <div class="dv num">R$ 38,9 mil <span style="font-size:.86rem;color:var(--muted);font-family:var(--sans);font-weight:600">/ R$ 52k meta</span></div>
+              <div class="bar"><i style="width:75%"></i></div>
+              <div class="ds">75% da meta · projeção de fechar em <b style="color:var(--ink-soft)">R$ 50,2k (96%)</b> · ponto de equilíbrio ✓</div>
+            </div>
+            <div class="dcard good">
+              <div class="dk"><span>Receita trazida pela Vera</span><span class="kpi-badge">💎 prova de valor</span></div>
+              <div class="dv num">R$ 6.240</div>
+              <div class="ds">reativação + no-show + campanhas · este mês</div>
+            </div>
+            <div class="dcard good">
+              <div class="dk"><span>No-show</span><span class="kpi-badge">💎 prova de valor</span></div>
+              <div class="dv num">2,1%</div>
+              <div class="ds">↓ 0,6 vs mês · a Vera confirma e recupera</div>
+            </div>
+          </div>
+          <div class="dgrid" style="grid-template-columns:1fr 1fr">
+            <div class="dcard">
+              <div class="dk"><span>Ocupação da semana</span></div>
+              <div class="dv num">84%</div>
+              <div class="ds">indicador antecedente do faturamento</div>
+            </div>
+            <div class="dcard danger">
+              <div class="dk"><span>A receber vencido</span></div>
+              <div class="dv num">R$ 640</div>
+              <div class="ds">3 pacientes · +15 dias · a Vera já está cobrando</div>
+            </div>
+          </div>
+          <div class="risks">
+            <div class="rh"><span class="t">⚠️ Riscos — agir antes</span><span class="m">a Verônica já está em cima</span></div>
+            <div class="rgrid">
+              <div class="risk"><div class="a">🗓️ Agenda vazia · próx. 7 dias</div><div class="b">3 dias com &lt;50% · risco de caixa → Vera oferecendo encaixes</div></div>
+              <div class="risk"><div class="a">↩️ 18 retornos atrasados</div><div class="b">deviam ter voltado · risco de receita recorrente → Vera reativando</div></div>
+              <div class="risk"><div class="a">💳 R$ 1.240 a receber em risco</div><div class="b">vence em 7d + vencido · risco de inadimplência → Vera cobrando</div></div>
+            </div>
+          </div>
+          <div class="dgrid" style="grid-template-columns:1.1fr .9fr">
+            <div class="dcard">
+              <div class="dk"><span>✳ Verônica · Noticiário de hoje</span><span style="font-size:.72rem;color:var(--muted)">07:30</span></div>
+              <div class="ledger" style="margin-top:8px">
+                <div class="row" style="padding:9px 2px"><span class="ic">🗓️</span><div class="main"><div class="a" style="font-size:.9rem">12 consultas · 2 encaixes livres (14h, 16h)</div></div><span class="pill b">Preencher</span></div>
+                <div class="row" style="padding:9px 2px"><span class="ic">⚠️</span><div class="main"><div class="a" style="font-size:.9rem">3 pacientes não confirmaram amanhã</div></div><span class="pill g">Cobrar</span></div>
+                <div class="row" style="padding:9px 2px"><span class="ic">💗</span><div class="main"><div class="a" style="font-size:.9rem">5 pacientes bons pra reativar</div></div><span class="pill n">Ver</span></div>
+              </div>
+            </div>
+            <div class="dcard">
+              <div class="dk"><span>O que a Vera fez pelo caixa</span><span class="kpi-badge">💎 este mês</span></div>
+              <div class="ledger" style="margin-top:8px">
+                <div class="row" style="padding:9px 2px"><span class="ic">💰</span><div class="main"><div class="a" style="font-size:.9rem">Receita recuperada</div></div><span class="amt" style="color:var(--vera-ink)">R$ 6.240</span></div>
+                <div class="row" style="padding:9px 2px"><span class="ic">↩️</span><div class="main"><div class="a" style="font-size:.9rem">Pacientes reativados</div></div><span class="amt">22</span></div>
+                <div class="row" style="padding:9px 2px"><span class="ic">💬</span><div class="main"><div class="a" style="font-size:.9rem">Conversas resolvidas sozinha</div></div><span class="amt" style="color:var(--brand)">78%</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid3" style="margin-top:8px">
+        <div class="feat reveal">
+          <div class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 4-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Só o que dá pra agir</h3>
+          <p>Cada papel vê o seu recorte. O gestor vê faturamento e riscos; a recepção, o que confirmar hoje. Nada de tela cheia de número que não vira ação.</p>
+        </div>
+        <div class="feat reveal">
+          <div class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3m0 12v3m9-9h-3M6 12H3m14.5-6.5-2 2m-9 9-2 2m13 0-2-2m-9-9-2-2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+          <h3>Antecipa, não só relata</h3>
+          <p>A faixa "agir antes" mostra o risco enquanto dá pra resolver: agenda vazia, retorno atrasado, dinheiro em risco. E a Vera já está agindo em cada um.</p>
+        </div>
+        <div class="feat reveal">
+          <div class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Z" stroke="currentColor" stroke-width="1.7"/><path d="M9 21h6M12 17v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+          <h3>Prova de valor, num toque</h3>
+          <p>O "Modo apresentação" destaca o que a Vera trouxe de receita e reduziu de falta, num painel pronto pra mostrar pra sócia ou pro contador.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEGURANÇA -->
+  <section>
+    <div class="wrap stack g28">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Feito para saúde e para sigilo</span>
+        <h2>Dado de paciente é sério. O sistema foi desenhado pensando nisso primeiro.</h2>
+      </div>
+      <div class="grid3">
+        <div class="feat reveal">
+          <div class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="4.5" y="10" width="15" height="10" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.7"/></svg></div>
+          <h3>Cada profissional vê só os seus</h3>
+          <p>Numa clínica com vários médicos, cada um enxerga apenas os próprios pacientes. Isolamento real, não promessa.</p>
+        </div>
+        <div class="feat reveal">
+          <div class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 1 0 4.5 16.8L21 21l-1.2-4.5A9 9 0 0 0 12 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12h.01M12 12h.01M15 12h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <h3>Operacional, nunca o clínico</h3>
+          <p>A Vera cuida de agenda e cobrança. Se um paciente compartilha algo sensível, ela acolhe e encaminha, <b>não espalha</b> o conteúdo no painel.</p>
+        </div>
+        <div class="feat reveal">
+          <div class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="18" cy="18" r="3" stroke="currentColor" stroke-width="1.7"/></svg></div>
+          <h3>Tudo registrado, tudo auditável</h3>
+          <p>Acesso por papel, log de quem viu o quê e conformidade com a LGPD, porque em saúde isso não é opcional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section style="padding-top:18px">
+    <div class="wrap">
+      <div class="closing reveal">
+        <span class="eyebrow ce">Como funciona, em uma frase</span>
+        <h2 style="margin-top:14px">O paciente conversa. A clínica opera. Você fica no controle.</h2>
+        <p>Tudo no seu número de WhatsApp, sem trocar nada. A Vera fala com quem chega, a Verônica cuida do resto com a sua equipe, e você vê o negócio pela primeira vez de manhã, num resumo só seu.</p>
+        <div class="duo">
+          <div class="who"><div class="nm"><span class="dot" style="background:#aed6f4;box-shadow:0 0 0 4px rgba(174,214,244,.25)"></span> Vera</div><div class="ds">fala com o paciente no WhatsApp: agenda, confirma, cobra, envia a nota.</div></div>
+          <div class="who"><div class="nm">✳ Verônica</div><div class="ds">cuida da operação com a equipe: Noticiário do Dia, aprovações, financeiro e o painel.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="pw">Vera Saúde</div>
+      <div style="margin-top:6px">Prévia do produto, sob medida para a <b>Clínica Ela · Centro de Medicina</b> · forte em maternidade e saúde da mulher · Goiânia/GO</div>
+      <div style="margin-top:8px; opacity:.9">✳ Telas e números são exemplos ilustrativos de como a Vera funciona. Não representam dados reais da clínica.</div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    document.documentElement.classList.add('js');
+    var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+    if(!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches){
+      els.forEach(function(e){ e.classList.add('in'); }); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(e){ io.observe(e); });
+  })();
+</script>
